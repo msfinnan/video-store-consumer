@@ -4,7 +4,7 @@ import './CustomersList.css';
 import Customer from './Customer';
 
 const CustomerList = (props) => {
-    const {allCustomers} = props;
+    const {allCustomers, onSelectCustomer} = props;
 
     const customerCards = allCustomers.map((customer, i) => {
         return (
@@ -20,6 +20,7 @@ const CustomerList = (props) => {
                 phone={customer.phone}
                 account_credit={customer.account_credit}
                 movies_checked_out_count={customer.movies_checked_out_count}
+                onSelectCustomer={onSelectCustomer}
             />
         )
     });

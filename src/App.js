@@ -47,12 +47,32 @@ class App extends Component {
       })
   }
 
+  onSelectMovie = (movieId) => {
+    const selectedMovie = this.state.allMovies.find(movie => movie.id === movieId)
+    console.log('movieId is', movieId)
+    console.log('selectedMovie.id is', selectedMovie.id)
+    this.setState({
+      movieId: selectedMovie.id
+    });
+  }
+
+  onSelectCustomer = (customerId) => {
+    const selectedCustomer = this.state.allCustomers.find(customer => customer.id === customerId)
+    console.log('customerId is', customerId)
+    console.log('selectedCustomer.id is', selectedCustomer.id)
+    this.setState({
+      customerId: selectedCustomer.id
+    });
+  }
 
   render() {
     return (
       <Router>
         <div>
           <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
             <li>
               <Link to="/movies">Movies</Link>
             </li>
@@ -63,11 +83,12 @@ class App extends Component {
 
           <hr />
 
+          <Route path="/"/> 
           <Route
             path="/movies"
-            render={(props) => <MovieList allMovies={this.state.allMovies} isAuthed={true} />}
+            render={(props) => <MovieList allMovies={this.state.allMovies} onSelectMovie={this.onSelectMovie} isAuthed={true} />}
           />
-          <Route path="/customers" render={(props) => <CustomerList allCustomers={this.state.allCustomers} isAuthed={true} />}
+          <Route path="/customers" render={(props) => <CustomerList allCustomers={this.state.allCustomers} onSelectCustomer={this.onSelectCustomer} isAuthed={true} />}
           />
         </div>
       </Router>

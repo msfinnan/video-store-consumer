@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const Customer = (props) => {
-    const {id, name, registered_at, address, city, state, postal_code, phone, account_credit, movies_checked_out_count} = props;
+    const {id, name, registered_at, address, city, state, postal_code, phone, account_credit, movies_checked_out_count, onSelectCustomer} = props;
 
     return (
         <div>
+             <button
+                onClick={() => onSelectCustomer(id)}
+            >Select Customer
+            </button>
             <p>{name}</p>
             <p>{id}</p>
             <p>{phone}</p>
