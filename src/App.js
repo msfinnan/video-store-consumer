@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import MovieList from './components/MovieList';
+import CustomerList from './components/CustomerList';
 
 class App extends Component {
   constructor(props) {
@@ -32,12 +33,29 @@ class App extends Component {
       })
   }
 
+  // componentDidMount() {
+  //   axios.get('http://localhost:3000/customers')
+  //     .then((response) => {
+  //       console.log('response.data is:', response.data);
+  //       this.setState({ 
+  //         allCustomers: response.data 
+  //       });
+  //       console.log('allCustomers is:',this.state.allCustomers)
+  //     })
+  //     .catch((error) => {
+  //       this.setState({
+  //         errorMessage: error.message
+  //       })
+  //     })
+  // }
+
   
   render() {
     return (
       <div>
         Video Store App
         < MovieList allMovies={this.state.allMovies}/> 
+        {/* < CustomerList allCustomers={this.state.allCustomers}/>  */}
       </div>
     );
   }

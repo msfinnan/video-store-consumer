@@ -1,23 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './MovieList.css';
+import Movie from './Movie';
 
 const MovieList = (props) => {
     const {allMovies} = props;
 
-    const movies = allMovies.map((movie, i) => {
+    const movieCards = allMovies.map((movie, i) => {
         return (
-            <div>
-                <p>{movie.title}</p>
-                <p>{movie.overview}</p>
-                <p>{movie.release_date}</p>
-            </div>
+            < Movie 
+                key={i}
+                title={movie.title}
+                overview={movie.overview}
+                release_date={movie.release_date}
+            />
         )
     });
 
     return (
         <div>
-            {movies}
+            {movieCards}
         </div>
     )
 }
