@@ -67,6 +67,23 @@ class App extends Component {
     });
   }
 
+  onCheckoutMovie = (selectedCustomerId, selectedMovieTitle) => {
+    let dueDate = Date.now() + 604800000 //2 weeks in milliseconds 
+    const checkoutDataToSendToApi = {
+      customer_id: selectedCustomerId,
+      due_date: new Date(dueDate) 
+    };
+    axios.post(`http://localhost:3000/rentals/${selectedMovieTitle}/check-out`, checkoutDataToSendToApi)
+      .then((response) => {
+        // do something here 
+      })
+      .catch((error) => {
+        this.setState({
+          errorMessage: error.message,
+        });
+      });
+  }
+
   render() {
     return (
       <div>
@@ -93,7 +110,11 @@ class App extends Component {
 
               <p>Movie ID: {this.state.selectedMovieId}</p>
               <p>Movie Title: {this.state.selectedMovieTitle}</p>
-
+              <button
+                onClick={() => this.onCheckoutMovie(this.state.selectedCustomerId, this.state.selectedMovieTitle)}>
+      
+                Check Out Movie to Customer
+              </button>
             </div>
 
             <Route path="/" />
