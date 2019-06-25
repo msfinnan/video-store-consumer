@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Library.css';
+import './MovieList.css';
 
-const Library = (props) => {
+const MovieList = (props) => {
     const {allMovies} = props;
 
     const movies = allMovies.map((movie, i) => {
@@ -22,4 +22,4 @@ const Library = (props) => {
     )
 }
 
-export default Library;
+export default MovieList;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import Library from './components/Library';
+import MovieList from './components/MovieList';
 
 class App extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class App extends Component {
     return (
       <div>
         Video Store App
-        < Library allMovies={this.state.allMovies}/> 
+        < MovieList allMovies={this.state.allMovies}/> 
       </div>
     );
   }
