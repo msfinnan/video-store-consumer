@@ -12,8 +12,10 @@ class App extends Component {
       allMovies: [],
       allCustomers: [],
       tmdbId: null,
-      customerId: null,
-      movieId: null,
+      selectedCustomerId: null,
+      selectedMovieId: null,
+      selectedCustomerName: null,
+      selectedMovieTitle: null,
       errorMessage: null,
     }
   }
@@ -51,7 +53,8 @@ class App extends Component {
     const selectedMovie = this.state.allMovies.find(movie => movie.id === movieId)
     console.log('movieId is', movieId)
     this.setState({
-      movieId: selectedMovie.id
+      selectedMovieId: selectedMovie.id,
+      selectedMovieTitle: selectedMovie.title
     });
   }
 
@@ -59,7 +62,8 @@ class App extends Component {
     const selectedCustomer = this.state.allCustomers.find(customer => customer.id === customerId)
     console.log('customerId is', customerId)
     this.setState({
-      customerId: selectedCustomer.id
+      selectedCustomerId: selectedCustomer.id,
+      selectedCustomerName: selectedCustomer.name
     });
   }
 
@@ -84,9 +88,11 @@ class App extends Component {
 
             <div>
               Current Selections:
-              <p>Customer: {this.state.customerId}</p>
+              <p>Customer ID: {this.state.selectedCustomerId}</p>
+              <p>Customer Name: {this.state.selectedCustomerName}</p>
 
-              <p>Movie: {this.state.movieId}</p>
+              <p>Movie ID: {this.state.selectedMovieId}</p>
+              <p>Movie Title: {this.state.selectedMovieTitle}</p>
 
             </div>
 
