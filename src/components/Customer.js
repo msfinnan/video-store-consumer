@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const Customer = (props) => {
@@ -22,6 +22,19 @@ const Customer = (props) => {
             <p>{postal_code}</p>
         </div>
     )
+}
+
+Customer.propTypes = {
+    name: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    phone: PropTypes.string,
+    account_credit: PropTypes.string,
+    movies_checked_out_count: PropTypes.number,
+    registered_at: PropTypes.string,
+    address: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+    postal_code: PropTypes.number,
 }
 
 export default Customer;

@@ -32,4 +32,9 @@ const CustomerList = (props) => {
     )
 }
 
+CustomerList.propTypes = {
+    allCustomers: PropTypes.array.isRequired,
+    onSelectCustomer: PropTypes.func,
+}
+
 export default CustomerList;

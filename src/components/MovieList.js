@@ -26,4 +26,9 @@ const MovieList = (props) => {
     )
 }
 
+MovieList.propTypes = {
+    allMovies: PropTypes.array,
+    onSelectMovie: PropTypes.func,
+}
+
 export default MovieList;
