@@ -10,9 +10,9 @@ const Movie = (props) => {
                 onClick={() => onSelectMovie(id)}
             >Select Movie
             </button>
-            <p>{title}</p>
-            <p>{overview}</p>
-            <p>{release_date}</p>
+            <p>Title: {title}</p>
+            <p>Overview: {overview}</p>
+            <p>Release Date: {release_date}</p>
         </div>
     )
 }

@@ -50,7 +50,6 @@ class App extends Component {
   onSelectMovie = (movieId) => {
     const selectedMovie = this.state.allMovies.find(movie => movie.id === movieId)
     console.log('movieId is', movieId)
-    console.log('selectedMovie.id is', selectedMovie.id)
     this.setState({
       movieId: selectedMovie.id
     });
@@ -59,7 +58,6 @@ class App extends Component {
   onSelectCustomer = (customerId) => {
     const selectedCustomer = this.state.allCustomers.find(customer => customer.id === customerId)
     console.log('customerId is', customerId)
-    console.log('selectedCustomer.id is', selectedCustomer.id)
     this.setState({
       customerId: selectedCustomer.id
     });
@@ -67,31 +65,41 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/movies">Movies</Link>
-            </li>
-            <li>
-              <Link to="/customers">Customers</Link>
-            </li>
-          </ul>
+      <div>
+        <Router>
+          <div>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/movies">Movies</Link>
+              </li>
+              <li>
+                <Link to="/customers">Customers</Link>
+              </li>
+            </ul>
 
-          <hr />
+            <hr />
 
-          <Route path="/"/> 
-          <Route
-            path="/movies"
-            render={(props) => <MovieList allMovies={this.state.allMovies} onSelectMovie={this.onSelectMovie} isAuthed={true} />}
-          />
-          <Route path="/customers" render={(props) => <CustomerList allCustomers={this.state.allCustomers} onSelectCustomer={this.onSelectCustomer} isAuthed={true} />}
-          />
-        </div>
-      </Router>
+            <div>
+              Current Selections:
+              <p>Customer: {this.state.customerId}</p>
+
+              <p>Movie: {this.state.movieId}</p>
+
+            </div>
+
+            <Route path="/" />
+            <Route
+              path="/movies"
+              render={(props) => <MovieList allMovies={this.state.allMovies} onSelectMovie={this.onSelectMovie} isAuthed={true} />}
+            />
+            <Route path="/customers" render={(props) => <CustomerList allCustomers={this.state.allCustomers} onSelectCustomer={this.onSelectCustomer} isAuthed={true} />}
+            />
+          </div>
+        </Router>
+      </div>
     );
   }
 }

@@ -10,16 +10,13 @@ const Customer = (props) => {
                 onClick={() => onSelectCustomer(id)}
             >Select Customer
             </button>
-            <p>{name}</p>
-            <p>{id}</p>
-            <p>{phone}</p>
-            <p>{account_credit}</p>
-            <p>{movies_checked_out_count}</p>
-            <p>{registered_at}</p>
-            <p>{address}</p>
-            <p>{city}</p>
-            <p>{state}</p>
-            <p>{postal_code}</p>
+            <p>Name: {name}</p>
+            <p>ID: {id}</p>
+            <p>Phone: {phone}</p>
+            <p>Account Credit: ${account_credit}</p>
+            <p>Movies Checked Out: {movies_checked_out_count}</p>
+            <p>Registed at: {registered_at}</p> 
+            <p>Address: {address} {city} {state} {postal_code}</p>
         </div>
     )
 }
@@ -28,13 +25,13 @@ Customer.propTypes = {
     name: PropTypes.string.isRequired,
     id: PropTypes.number,
     phone: PropTypes.string,
-    account_credit: PropTypes.string,
+    account_credit: PropTypes.number,
     movies_checked_out_count: PropTypes.number,
     registered_at: PropTypes.string,
     address: PropTypes.string,
     city: PropTypes.string,
     state: PropTypes.string,
-    postal_code: PropTypes.number,
+    postal_code: PropTypes.string,
 }
 
 export default Customer;
