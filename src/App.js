@@ -31,31 +31,27 @@ class App extends Component {
           errorMessage: error.message
         })
       })
+      axios.get('http://localhost:3000/customers')
+      .then((response) => {
+        console.log('response.data is:', response.data);
+        this.setState({ 
+          allCustomers: response.data 
+        });
+        console.log('allCustomers is:',this.state.allCustomers)
+      })
+      .catch((error) => {
+        this.setState({
+          errorMessage: error.message
+        })
+      })
   }
-
-  // componentDidMount() {
-  //   axios.get('http://localhost:3000/customers')
-  //     .then((response) => {
-  //       console.log('response.data is:', response.data);
-  //       this.setState({ 
-  //         allCustomers: response.data 
-  //       });
-  //       console.log('allCustomers is:',this.state.allCustomers)
-  //     })
-  //     .catch((error) => {
-  //       this.setState({
-  //         errorMessage: error.message
-  //       })
-  //     })
-  // }
-
   
   render() {
     return (
       <div>
         Video Store App
         < MovieList allMovies={this.state.allMovies}/> 
-        {/* < CustomerList allCustomers={this.state.allCustomers}/>  */}
+        < CustomerList allCustomers={this.state.allCustomers}/> 
       </div>
     );
   }
