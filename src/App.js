@@ -67,9 +67,7 @@ class App extends Component {
             path="/movies"
             render={(props) => <MovieList allMovies={this.state.allMovies} isAuthed={true} />}
           />
-          <Route 
-            path="/customers" 
-            render={(props) => <CustomerList allCustomers={this.state.allCustomers} isAuthed={true} />}
+          <Route path="/customers" render={(props) => <CustomerList allCustomers={this.state.allCustomers} isAuthed={true} />}
           />
         </div>
       </Router>
