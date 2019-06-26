@@ -13,7 +13,7 @@ const Movie = (props) => {
             <img className="movie-image"
                 src={image_url}
                 alt="movie" />
-            <p><strong>{title}</strong></p>
+            <p className="card-title"><strong>{title}</strong></p>
             <button onClick={onButtonClick}
             >{displayButton}</button>
             <p>{overview}</p>

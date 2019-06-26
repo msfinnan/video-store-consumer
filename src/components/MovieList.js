@@ -4,6 +4,7 @@ import axios from 'axios';
 import './MovieList.css';
 import Movie from './Movie';
 
+
 class MovieList extends Component {
     constructor(props) { 
         super(props)
@@ -41,7 +42,7 @@ class MovieList extends Component {
     const displayMovies = this.state.movies.map((movie) => {
       const { id, title, overview, release_date, image_url } = movie;
       return (
-      <section className="movie-card">
+      <section className="card">
         <Movie 
           id={id}
           key= {id}
