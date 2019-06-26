@@ -14,8 +14,8 @@ class App extends Component {
   constructor(props) { 
     super(props)
     this.state = {
-      selectedCustomer: undefined,
-      selectedMovie: undefined
+      selectedCustomer: null,
+      selectedMovie: null
     }
   }
 
@@ -36,10 +36,10 @@ class App extends Component {
   onCheckoutMovie = (selectedCustomer, selectedMovie) => {
     let dueDate = Date.now() + 604800000 //2 weeks in milliseconds 
     const checkoutDataToSendToApi = {
-      customer_id: selectedCustomer,
+      customer_id: selectedCustomer.id,
       due_date: new Date(dueDate) 
     };
-    axios.post(`http://localhost:3000/rentals/${selectedMovie}/check-out`, checkoutDataToSendToApi)
+    axios.post(`http://localhost:3000/rentals/${selectedMovie.title}/check-out`, checkoutDataToSendToApi)
       .then((response) => {
         // do something here 
       })

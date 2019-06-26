@@ -92,7 +92,7 @@ class Search extends Component {
       <div>
         <section>
             <form
-                onFormSubmit = {this.onFormInput}>
+                onSubmit = {this.onFormInput}>
             <label>
                 Movie title:
             <input
