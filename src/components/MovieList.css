@@ -1,0 +1,9 @@
+.movie-cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie-card {
+    max-width: 150px;
+    margin: 20px;
+}
