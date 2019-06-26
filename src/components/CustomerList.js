@@ -29,7 +29,7 @@ class CustomerList extends Component {
                         phone={customer.phone}
                         account_credit={customer.account_credit}
                         movies_checked_out_count={customer.movies_checked_out_count}
-                        onSelectCustomer={this.props.onSelectCustomer}
+                        onSelectCustomerCallback={this.props.onSelectCustomer}
                     />
                 );
             });

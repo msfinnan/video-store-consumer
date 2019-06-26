@@ -32,16 +32,13 @@ class Search extends Component {
     const URL = `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${query}`
   
     axios.get(URL)
-
       .then((response) => {
         const currentSearch = response.data.results.map((movie) => {
           
           const searchedMovie = { 
             title: movie.title,
             overview: movie.overview,
-            release_date: movie.release_date,
-            external_id: movie.id,
-            inventory: movie.inventory
+            release_date: movie.release_date
           }
           
           return searchedMovie
@@ -76,7 +73,7 @@ class Search extends Component {
     }
   
     render() {
-        const displayMovie = this.state.searchResults.map((movie) => {
+        const displayMovie = this.state.queryResults.map((movie) => {
           const { id, title, overview, release_date, external_id } = movie;
           return (
           <section>
