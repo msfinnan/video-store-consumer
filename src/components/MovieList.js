@@ -24,6 +24,7 @@ class MovieList extends Component {
             title: movie.title,
             overview: movie.overview,
             release_date: movie.release_date,
+            image_url: movie.image_url
             }
             return addMovie
         })
@@ -38,7 +39,7 @@ class MovieList extends Component {
 
   render() {
     const displayMovies = this.state.movies.map((movie) => {
-      const { id, title, overview, release_date } = movie;
+      const { id, title, overview, release_date, image_url } = movie;
       return (
       <section>
         <Movie 
@@ -46,9 +47,11 @@ class MovieList extends Component {
           key= {id}
           title={title}
           overview={overview}
+          image_url={image_url}
           release_date={release_date}
           onSelectMovieCallback={this.props.onSelectMovie}
           displayButton='Select Movie'
+
         />
       </section>);
     });
