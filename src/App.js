@@ -11,7 +11,7 @@ const Index = () => {
   return (<p>home</p>);
 }
 class App extends Component {
-  constructor(props) { 
+  constructor(props) {
     super(props)
     this.state = {
       selectedCustomer: null,
@@ -23,35 +23,36 @@ class App extends Component {
   onSelectCustomer = (customer) => {
     console.log(customer);
     this.setState({
-        selectedCustomer: customer,
+      selectedCustomer: customer,
     });
   }
 
   onSelectMovie = (movie) => {
     console.log(movie);
     this.setState({
-        selectedMovie: movie,
+      selectedMovie: movie,
     });
   }
 
   onCheckoutMovie = (selectedCustomer, selectedMovie) => {
-    if(selectedCustomer !== null && selectedMovie !== null){
-    let dueDate = Date.now() + 604800000  //2 weeks in milliseconds 604800000 
-    const checkoutDataToSendToApi = {
-      customer_id: selectedCustomer.id,
-      due_date: new Date(dueDate) 
-    };
-    axios.post(`http://localhost:3000/rentals/${selectedMovie.title}/check-out`, checkoutDataToSendToApi)
-      .then((response) => {
-        this.setState({
-          customerMessage: `${selectedMovie.title} successfully checked out to ${selectedCustomer.name} (User ID ${selectedCustomer.id})`
-      });
-      })
-      .catch((error) => {
-        this.setState({
-          errorMessage: error.message,
+    if (selectedCustomer !== null && selectedMovie !== null) {
+      let dueDate = Date.now() + 604800000  //2 weeks in milliseconds 604800000 
+      const checkoutDataToSendToApi = {
+        customer_id: selectedCustomer.id,
+        due_date: new Date(dueDate)
+      };
+      axios.post(`http://localhost:3000/rentals/${selectedMovie.title}/check-out`, checkoutDataToSendToApi)
+        .then((response) => {
+          this.setState({
+            customerMessage: `${selectedMovie.title} successfully checked out to ${selectedCustomer.name} (User ID ${selectedCustomer.id})`,
+            errorMessage: ''
+          });
+        })
+        .catch((error) => {
+          this.setState({
+            errorMessage: error.message,
+          });
         });
-      });
     } else {
       this.setState({
         errorMessage: "Please select a user and movie"
@@ -61,21 +62,23 @@ class App extends Component {
 
   render() {
     const errorSection = (this.state.errorMessage) ?
-    (<section className="error">
-      Error: {this.state.errorMessage}
-    </section>) : null;
+      (<section className="error">
+        Error: {this.state.errorMessage}
+      </section>) : null;
 
-const messageSection = (this.state.customerMessage) ?
-    (<section className="error">
-      {this.state.customerMessage}
-    </section>) : null;
+    const messageSection = (this.state.customerMessage) ?
+      (<section className="error">
+        {this.state.customerMessage}
+      </section>) : null;
+
     return (
       <main>
         <header>
-      <h1>Movie Store </h1>
-      {errorSection}
-      {messageSection}
+          <h1>Movie Store </h1>
+          {errorSection}
+          {messageSection}
         </header>
+
         <Router>
           <div>
             <ul>
@@ -103,20 +106,20 @@ const messageSection = (this.state.customerMessage) ?
                 onCheckoutMovie={this.onCheckoutMovie}
               />
             </div>
-            <Route path="/" exact component={Index}/>
+            <Route path="/" exact component={Index} />
             <Route path="/home" exact component={Index} />
             <Route
               path="/movies"
               render={(props) => <MovieList {...props} onSelectMovie={this.onSelectMovie} isAuthed={true} />}
             />
-            <Route 
+            <Route
               path="/customers"
               render={(props) => <CustomerList {...props} onSelectCustomer={this.onSelectCustomer} isAuthed={true} />}
             />
             <Route path="/search/" exact component={Search} />
           </div>
         </Router>
-        </main>
+      </main>
     );
   }
 }
