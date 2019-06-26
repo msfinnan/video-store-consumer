@@ -1,92 +1,35 @@
 import React, { Component } from 'react';
 import './App.css';
-import axios from 'axios';
 import MovieList from './components/MovieList';
 import CustomerList from './components/CustomerList';
+import Search from './components/Search';
+import Select from './components/Select';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props) { 
+    super(props)
     this.state = {
-      allMovies: [],
-      allCustomers: [],
-      tmdbId: null,
-      selectedCustomerId: null,
-      selectedMovieId: null,
-      selectedCustomerName: null,
-      selectedMovieTitle: null,
-      errorMessage: null,
+      selectedCustomer: null,
+      selectedMovie: null
     }
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:3000/movies')
-      .then((response) => {
-        console.log('response.data is:', response.data);
-        this.setState({
-          allMovies: response.data
-        });
-        console.log('allMovies is:', this.state.allMovies)
-      })
-      .catch((error) => {
-        this.setState({
-          errorMessage: error.message
-        })
-      })
-    axios.get('http://localhost:3000/customers')
-      .then((response) => {
-        console.log('response.data is:', response.data);
-        this.setState({
-          allCustomers: response.data
-        });
-        console.log('allCustomers is:', this.state.allCustomers)
-      })
-      .catch((error) => {
-        this.setState({
-          errorMessage: error.message
-        })
-      })
-  }
-
-  onSelectMovie = (movieId) => {
-    const selectedMovie = this.state.allMovies.find(movie => movie.id === movieId)
-    console.log('movieId is', movieId)
+  onSelectCustomer = (customer) => {
+    console.log(customer);
     this.setState({
-      selectedMovieId: selectedMovie.id,
-      selectedMovieTitle: selectedMovie.title
+        selectedCustomer: customer,
     });
   }
 
-  onSelectCustomer = (customerId) => {
-    const selectedCustomer = this.state.allCustomers.find(customer => customer.id === customerId)
-    console.log('customerId is', customerId)
+  onSelectMovie = (movie) => {
+    console.log(movie);
     this.setState({
-      selectedCustomerId: selectedCustomer.id,
-      selectedCustomerName: selectedCustomer.name
+        selectedMovie: movie,
     });
-  }
-
-  onCheckoutMovie = (selectedCustomerId, selectedMovieTitle) => {
-    let dueDate = Date.now() + 604800000 //2 weeks in milliseconds 
-    const checkoutDataToSendToApi = {
-      customer_id: selectedCustomerId,
-      due_date: new Date(dueDate) 
-    };
-    axios.post(`http://localhost:3000/rentals/${selectedMovieTitle}/check-out`, checkoutDataToSendToApi)
-      .then((response) => {
-        // do something here 
-      })
-      .catch((error) => {
-        this.setState({
-          errorMessage: error.message,
-        });
-      });
   }
 
   render() {
     return (
-      <div>
         <Router>
           <div>
             <ul>
@@ -99,34 +42,35 @@ class App extends Component {
               <li>
                 <Link to="/customers">Customers</Link>
               </li>
+              <li>
+                <Link to="/search">Search</Link>
+              </li>
             </ul>
 
             <hr />
 
             <div>
               Current Selections:
-              <p>Customer ID: {this.state.selectedCustomerId}</p>
-              <p>Customer Name: {this.state.selectedCustomerName}</p>
-
-              <p>Movie ID: {this.state.selectedMovieId}</p>
-              <p>Movie Title: {this.state.selectedMovieTitle}</p>
+              <p>Customer: {this.state.selectedCustomer}</p>
+              <p>Movie: {this.state.selectedMovieId}</p>
               <button
-                onClick={() => this.onCheckoutMovie(this.state.selectedCustomerId, this.state.selectedMovieTitle)}>
-      
+              type="button"
+                onClick={() => this.onCheckoutMovie(this.state.selectedCustomer, this.state.selectedMovie)}>
                 Check Out Movie to Customer
               </button>
             </div>
-
             <Route path="/" />
             <Route
               path="/movies"
-              render={(props) => <MovieList allMovies={this.state.allMovies} onSelectMovie={this.onSelectMovie} isAuthed={true} />}
+              render={(props) => <MovieList {...props} onSelectMovie={this.onSelectMovie} isAuthed={true} />}
             />
-            <Route path="/customers" render={(props) => <CustomerList allCustomers={this.state.allCustomers} onSelectCustomer={this.onSelectCustomer} isAuthed={true} />}
+            <Route 
+              path="/customers"
+              render={(props) => <CustomerList {...props} onSelectCustomer={this.onSelectCustomer} isAuthed={true} />}
             />
+            <Route path="/search/" exact component={Search} />
           </div>
         </Router>
-      </div>
     );
   }
 }

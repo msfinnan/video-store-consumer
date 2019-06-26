@@ -1,40 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import './CustomersList.css';
 import Customer from './Customer';
+class CustomerList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            customers: [],
+            selectedCustomer: null
+        }
+    }
+    
+    customerCards() {
+        axios.get('http://localhost:3000/customers')
+        .then((response) => {
+            const allCustomers = response.data.map((customer) => {
+                return (
+                    < Customer
+                        key={customer.id}
+                        id= {customer.id}
+                        registerd_at={customer.registerd_at}
+                        name={customer.name}
+                        address={customer.address}
+                        city={customer.city}
+                        state={customer.state}
+                        postal_code={customer.postal_code}
+                        phone={customer.phone}
+                        account_credit={customer.account_credit}
+                        movies_checked_out_count={customer.movies_checked_out_count}
+                        onSelectCustomer={this.props.onSelectCustomer}
+                    />
+                );
+            });
+            this.setState({
+                customers: allCustomers,
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+    componentDidMount() {
+        this.customerCards();
+    }
 
-const CustomerList = (props) => {
-    const {allCustomers, onSelectCustomer} = props;
-
-    const customerCards = allCustomers.map((customer, i) => {
+    render () {
+        const allCustomers = this.state.customers;
         return (
-            < Customer
-                key={i}
-                id={customer.id}
-                registerd_at={customer.registerd_at}
-                name={customer.name}
-                address={customer.address}
-                city={customer.city}
-                state={customer.state}
-                postal_code={customer.postal_code}
-                phone={customer.phone}
-                account_credit={customer.account_credit}
-                movies_checked_out_count={customer.movies_checked_out_count}
-                onSelectCustomer={onSelectCustomer}
-            />
-        )
-    });
-
-    return (
-        <div>
-            {customerCards}
-        </div>
-    )
-}
-
-CustomerList.propTypes = {
-    allCustomers: PropTypes.array.isRequired,
-    onSelectCustomer: PropTypes.func,
+            <div>
+                {allCustomers}
+            </div>
+        );
+    }
 }
 
 export default CustomerList;
