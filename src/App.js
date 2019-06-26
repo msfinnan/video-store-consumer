@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
 import MovieList from './components/MovieList';
 import CustomerList from './components/CustomerList';
@@ -32,6 +33,23 @@ class App extends Component {
     });
   }
 
+  onCheckoutMovie = (selectedCustomer, selectedMovie) => {
+    let dueDate = Date.now() + 604800000 //2 weeks in milliseconds 
+    const checkoutDataToSendToApi = {
+      customer_id: selectedCustomer,
+      due_date: new Date(dueDate) 
+    };
+    axios.post(`http://localhost:3000/rentals/${selectedMovie}/check-out`, checkoutDataToSendToApi)
+      .then((response) => {
+        // do something here 
+      })
+      .catch((error) => {
+        this.setState({
+          errorMessage: error.message,
+        });
+      });
+  }
+
   render() {
     return (
         <Router>
@@ -52,20 +70,19 @@ class App extends Component {
             </ul>
 
             <hr />
-            <Select
-          movie={this.state.selectedMovie}
-          customer={this.state.selectedCustomer}
-          />
-            {/* <div>
+
+            <div>
               Current Selections:
-              <p>Customer: {this.state.selectedCustomer}</p>
-              <p>Movie: {this.state.selectedMovie}</p>
+              <Select
+                movie={this.state.selectedMovie}
+                customer={this.state.selectedCustomer}
+              />
               <button
               type="button"
                 onClick={() => this.onCheckoutMovie(this.state.selectedCustomer, this.state.selectedMovie)}>
                 Check Out Movie to Customer
               </button>
-            </div> */}
+            </div>
             <Route path="/" exact component={Index}/>
             <Route path="/home" exact component={Index} />
             <Route
