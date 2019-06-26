@@ -53,6 +53,7 @@ class CustomerList extends Component {
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Movies Checked Out</th>
                         <th scope="col">Select</th>
                     </tr>
                 </thead>

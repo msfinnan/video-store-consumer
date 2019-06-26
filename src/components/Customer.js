@@ -13,17 +13,18 @@ class Customer extends Component {
 
         return (
             <tbody>
-                <td>ID: {id}</td>
-                <td>Name: {name}</td>
+                <td>{id}</td>
+                <td>{name}</td>
+                <td>{movies_checked_out_count}</td>
                 {/* <p>Phone: {phone}</p>
                 <p>Account Credit: ${account_credit}</p>
-                <p>Movies Checked Out: {movies_checked_out_count}</p>
                 <p>Registed at: {registered_at}</p> 
                 <p>Address: {address} {city} {state} {postal_code}</p> */}
                 <td><button
-                 onClick={ this.onClickButton}
-                >Select Customer
-                </button></td>
+                    className="btn btn-primary"
+                    onClick={ this.onClickButton}
+                    >Select Customer
+                    </button></td>
             </tbody>            
         )
     }

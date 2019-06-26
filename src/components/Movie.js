@@ -9,15 +9,20 @@ const Movie = (props) => {
     }
 
     return (
-        <div>
-            <img className="movie-image"
-                src={image_url}
-                alt="movie" />
-            <p className="card-title"><strong>{title}</strong></p>
-            <button onClick={onButtonClick}
-            >{displayButton}</button>
-            <p>{overview}</p>
-            <p>{parseInt(release_date)}</p>
+        <div className="card">
+            <div className="card-body">
+                <img className="movie-image"
+                    src={image_url}
+                    alt="movie" />
+                <p className="card-title"><strong>{title}</strong></p>
+                <p className="card-subtitle mb-2 text-muted">{parseInt(release_date)}</p>
+                <button 
+                    class="btn btn-primary"
+                    onClick={onButtonClick}
+                    >{displayButton}
+                </button>
+                <p className="card-text">{overview}</p>
+            </div>
         </div>
     );
 };

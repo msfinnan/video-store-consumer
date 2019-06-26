@@ -42,7 +42,7 @@ class MovieList extends Component {
     const displayMovies = this.state.movies.map((movie) => {
       const { id, title, overview, release_date, image_url } = movie;
       return (
-      <section className="card">
+      <section>
         <Movie 
           id={id}
           key= {id}
