@@ -17,7 +17,7 @@ const Movie = (props) => {
             <button onClick={onButtonClick}
             >{displayButton}</button>
             <p>{overview}</p>
-            <p>Release Date: {release_date}</p>
+            <p>{parseInt(release_date)}</p>
         </div>
     );
 };
