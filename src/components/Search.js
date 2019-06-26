@@ -74,7 +74,7 @@ class Search extends Component {
   
     render() {
         const displayMovie = this.state.queryResults.map((movie) => {
-          const { id, title, overview, release_date, external_id } = movie;
+          const { id, title, overview, release_date } = movie;
           return (
           <section>
             <Movie

@@ -8,7 +8,7 @@ class CustomerList extends Component {
         super(props);
         this.state = {
             customers: [],
-            selectedCustomer: null
+            selectedCustomer: undefined
         }
     }
     

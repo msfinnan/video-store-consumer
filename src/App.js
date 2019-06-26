@@ -5,12 +5,16 @@ import CustomerList from './components/CustomerList';
 import Search from './components/Search';
 import Select from './components/Select';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+const Index = () => {
+  return (<p>home</p>);
+}
 class App extends Component {
   constructor(props) { 
     super(props)
     this.state = {
-      selectedCustomer: null,
-      selectedMovie: null
+      selectedCustomer: undefined,
+      selectedMovie: undefined
     }
   }
 
@@ -48,18 +52,22 @@ class App extends Component {
             </ul>
 
             <hr />
-
-            <div>
+            <Select
+          movie={this.state.selectedMovie}
+          customer={this.state.selectedCustomer}
+          />
+            {/* <div>
               Current Selections:
               <p>Customer: {this.state.selectedCustomer}</p>
-              <p>Movie: {this.state.selectedMovieId}</p>
+              <p>Movie: {this.state.selectedMovie}</p>
               <button
               type="button"
                 onClick={() => this.onCheckoutMovie(this.state.selectedCustomer, this.state.selectedMovie)}>
                 Check Out Movie to Customer
               </button>
-            </div>
-            <Route path="/" />
+            </div> */}
+            <Route path="/" exact component={Index}/>
+            <Route path="/home" exact component={Index} />
             <Route
               path="/movies"
               render={(props) => <MovieList {...props} onSelectMovie={this.onSelectMovie} isAuthed={true} />}
