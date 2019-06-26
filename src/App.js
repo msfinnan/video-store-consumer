@@ -76,12 +76,13 @@ class App extends Component {
               <Select
                 movie={this.state.selectedMovie}
                 customer={this.state.selectedCustomer}
+                onCheckoutMovie={this.onCheckoutMovie}
               />
-              <button
+              {/* <button
               type="button"
                 onClick={() => this.onCheckoutMovie(this.state.selectedCustomer, this.state.selectedMovie)}>
                 Check Out Movie to Customer
-              </button>
+              </button> */}
             </div>
             <Route path="/" exact component={Index}/>
             <Route path="/home" exact component={Index} />
