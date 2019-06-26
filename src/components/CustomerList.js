@@ -11,46 +11,53 @@ class CustomerList extends Component {
             selectedCustomer: undefined
         }
     }
-    
+
     customerCards() {
         axios.get('http://localhost:3000/customers')
-        .then((response) => {
-            const allCustomers = response.data.map((customer) => {
-                return (
-                    < Customer
-                        key={customer.id}
-                        id= {customer.id}
-                        registerd_at={customer.registerd_at}
-                        name={customer.name}
-                        address={customer.address}
-                        city={customer.city}
-                        state={customer.state}
-                        postal_code={customer.postal_code}
-                        phone={customer.phone}
-                        account_credit={customer.account_credit}
-                        movies_checked_out_count={customer.movies_checked_out_count}
-                        onSelectCustomerCallback={this.props.onSelectCustomer}
-                    />
-                );
+            .then((response) => {
+                const allCustomers = response.data.map((customer) => {
+                    return (
+                        < Customer
+                            key={customer.id}
+                            id={customer.id}
+                            registerd_at={customer.registerd_at}
+                            name={customer.name}
+                            address={customer.address}
+                            city={customer.city}
+                            state={customer.state}
+                            postal_code={customer.postal_code}
+                            phone={customer.phone}
+                            account_credit={customer.account_credit}
+                            movies_checked_out_count={customer.movies_checked_out_count}
+                            onSelectCustomerCallback={this.props.onSelectCustomer}
+                        />
+                    );
+                });
+                this.setState({
+                    customers: allCustomers,
+                });
+            })
+            .catch((error) => {
+                console.log(error);
             });
-            this.setState({
-                customers: allCustomers,
-            });
-        })
-        .catch((error) => {
-            console.log(error);
-        });
     }
     componentDidMount() {
         this.customerCards();
     }
 
-    render () {
+    render() {
         const allCustomers = this.state.customers;
         return (
-            <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Select</th>
+                    </tr>
+                </thead>
                 {allCustomers}
-            </div>
+            </table>
         );
     }
 }
