@@ -55,9 +55,25 @@ class App extends Component {
         });
     } else {
       this.setState({
-        errorMessage: "Please select a user and movie"
+        errorMessage: "Please select a user and movie."
       });
     }
+  }
+
+  addMovie = (movie) => {
+    const movieInfo = {
+      title: movie.title,
+      overview: movie.overview,
+      release_date: movie.release_date,
+    };
+    
+    axios.post('http://localhost:3000/movies?', movieInfo)
+      .then(response => {
+        console.log('Movie added!', response);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
   render() {

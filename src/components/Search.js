@@ -46,8 +46,7 @@ class Search extends Component {
         <Movie
           key={movie.id}
           {...movie}
-          // isSearch={this.state.isSearch}
-          // addToLibrary={this.props.addToLibrary}
+          addMovie={this.props.addMovie}
         />
       );
     });
@@ -69,20 +68,8 @@ class Search extends Component {
   }
 }
 
-
-  //           <form
-  //               onSubmit = {this.onFormInput}>
-  //           <label>
-  //               Movie title:
-  //           <input
-  //             name="query"
-  //             type="text"
-  //             value = {this.state.query}
-  //             onChange = {this.onInputChange}
-  //              >
-  //           </input>
-  //           </label>
-  
-
+Search.propTypes = {
+  addMovie: PropTypes.func,
+};
 
 export default Search;
