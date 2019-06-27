@@ -1,34 +1,27 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-const Movie = (props) => {
-    const { title, overview, release_date, addMovie, onSelectMovieCallback } = props;
+class Movie extends Component {
 
-//     const addMovieButton = (
-//     <button type='button' onClick={() => props.addMovie({ ...props })}>
-//       Add to Movie List
-//     </button>
-//   );
+    onClickButton = () => {
+        this.props.onSelectMovieCallback(this.props);
+    }
 
-//     const onSelectMovieButton = (
-//         <button onClick={() => props.onSelectMovieCallback({ ...props })}> Select </button>
-//     );
+    render () {
+        const { title, overview, release_date } = this.props;
 
-//     const onButtonClick = () => {
-//         if (rails db movie list includes movie then) {
-//            return onSelectMovieButton }
-//             else if (movie is a new movie from api) {
-//            return addMovieButton }
-//     };
-
-    return (
-        <div>
-            <p>Title: {title}</p>
-            <p>Overview: {overview}</p>
-            <p>Release Date: {release_date}</p>
-            { onButtonClick }
-        </div>
-    );
+        return (
+            <div>
+                <p>Title: {title}</p>
+                <p>Overview: {overview}</p>
+                <p>Release Date: {release_date}</p>
+                <button
+                 onClick={ this.onClickButton}
+                >Select Movie
+                </button>
+            </div>            
+        )
+    }
 };
 
 export default Movie;

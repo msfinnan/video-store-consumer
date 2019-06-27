@@ -20,7 +20,7 @@ class CustomerList extends Component {
                     < Customer
                         key={customer.id}
                         id= {customer.id}
-                        registerd_at={customer.registerd_at}
+                        registered_at={customer.registered_at}
                         name={customer.name}
                         address={customer.address}
                         city={customer.city}

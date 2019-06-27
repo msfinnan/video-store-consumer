@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './Customer.css'
-
 class Customer extends Component {
 
     onClickButton = () => {
@@ -18,7 +17,7 @@ class Customer extends Component {
                 <p>Phone: {phone}</p>
                 <p>Account Credit: ${account_credit}</p>
                 <p>Movies Checked Out: {movies_checked_out_count}</p>
-                <p>Registed at: {registered_at}</p> 
+                <p>Registered at: {registered_at}</p> 
                 <p>Address: {address} {city} {state} {postal_code}</p>
                 <button
                  onClick={ this.onClickButton}

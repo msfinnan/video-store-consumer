@@ -60,22 +60,6 @@ class App extends Component {
     }
   }
 
-  addMovie = (movie) => {
-    const movieInfo = {
-      title: movie.title,
-      overview: movie.overview,
-      release_date: movie.release_date,
-    };
-    
-    axios.post('http://localhost:3000/movies?', movieInfo)
-      .then(response => {
-        console.log('Movie added!', response);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
-
   render() {
     const errorSection = (this.state.errorMessage) ?
       (<section className="error">
@@ -126,7 +110,7 @@ class App extends Component {
             <Route path="/home" exact component={Index} />
             <Route
               path="/movies"
-              render={(props) => <MovieList {...props} onSelectMovie={this.onSelectMovie} isAuthed={true} />}
+              render={(props) => <MovieList {...props} onSelectMovieCallback={this.onSelectMovie} isAuthed={true} />}
             />
             <Route
               path="/customers"

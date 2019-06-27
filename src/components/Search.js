@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Movie from './Movie';
+
 class Search extends Component {
 
   constructor(props) {
     super(props);
-    this.cleared = {
+    this.state = {
       query: "",
-      queryResults: undefined,
+      queryResults: [],
     }
-
-    this.state = { ...this.cleared }
   }
 
   searchMovies = () => {
@@ -40,17 +39,43 @@ class Search extends Component {
     this.searchMovies();
   };
 
+  // TODO make map results list items
   movieSearchList = () => {
-    return this.state.queryResults.map(movie => {
+    return this.state.queryResults.map((movie) => {
       return (
-        <Movie
-          key={movie.id}
-          {...movie}
-          addMovie={this.props.addMovie}
-        />
+        <div key={movie.id}>
+          <p>{movie.title}</p>
+          <p>{movie.overview}</p>
+          <p>{movie.release_date}</p>
+          <button onClick={this.addMovie(movie)}> Add Movie</button>
+        </div>
       );
     });
   };
+
+  addMovie = (movie) => {
+    return () => { 
+      const movieInfo = {
+        title: movie.title,
+        overview: movie.overview,
+        release_date: movie.release_date,
+        image_url: movie.image_url,
+        external_id: movie.external_id,
+        inventory: 27
+      };
+
+      axios.post('http://localhost:3000/movies', movieInfo)
+      .then(response => {
+        console.log('Movie added!', response);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      let newState = this.state
+      newState.queryResults = [];
+      this.setState({newState});
+    }
+  }
 
   render() {
     return (
@@ -62,14 +87,10 @@ class Search extends Component {
             <input type="submit" name="submit" value="Search" />
           </form>
         </section>
-        {this.state.queryResults && this.movieSearchList()}
+        {this.movieSearchList()}
       </div>
     );
   }
 }
-
-Search.propTypes = {
-  addMovie: PropTypes.func,
-};
 
 export default Search;

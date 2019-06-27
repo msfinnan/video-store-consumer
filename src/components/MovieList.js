@@ -5,60 +5,50 @@ import './MovieList.css';
 import Movie from './Movie';
 
 class MovieList extends Component {
-    constructor(props) { 
-        super(props)
-        this.state = {
-          movies: [],
-          selectedMovie: ""
-        }
-    }
-
-    componentDidMount() {
-        axios.get('http://localhost:3000/movies')
-          .then((response) => {
-            console.log(response.data);
-    
-        const movieCards = response.data.map((movie) => {
-            const addMovie = {
-            id: movie.id,
-            title: movie.title,
-            overview: movie.overview,
-            release_date: movie.release_date,
-            }
-            return addMovie
-        })
-
-        console.log(movieCards);
-        this.setState({movies: movieCards});
-    })
-    .catch((error) => {
-        console.log(error);
-      })
+  constructor(props) { 
+    super(props)
+      this.state = {
+        movies: [],
+        selectedMovie: undefined
+      }
   }
 
-  render() {
-    const displayMovies = this.state.movies.map((movie) => {
-      const { id, title, overview, release_date } = movie;
-      return (
-      <section>
-        <Movie 
-          id={id}
-          key= {id}
-          title={title}
-          overview={overview}
-          release_date={release_date}
-          onSelectMovieCallback={this.props.onSelectMovie}
-          displayButton='Select Movie'
-        />
-      </section>);
-    });
+  MovieCards() {
+    axios.get('http://localhost:3000/movies')
+      .then((response) => {
+          const allMovies = response.data.map((movie) => {
+              return (
+                  < Movie
+                      key={movie.id}
+                      id= {movie.id}
+                      title= {movie.title}
+                      overview={movie.overview}
+                      release_date= {movie.release_date}
+                      onSelectMovieCallback={this.props.onSelectMovie}
+                  />
+              );
+          });
+          this.setState({
+              movies: allMovies,
+          });
+      })
+      .catch((error) => {
+          console.log(error);
+      });
+  }
 
+  componentDidMount() {
+      this.MovieCards();
+  }
+
+  render () {
+    const allMovies = this.state.movies;
     return (
         <div>
-          {displayMovies}
+            {allMovies}
         </div>
-      );     
-    }
+    );
   }
+}
 
 export default MovieList;
