@@ -12,11 +12,14 @@ const Select = (props) => {
     }
 
         return (
-            <div>
+            <div className="card">
+                <div className="card-body">
+                    <p className="card-title"><strong>Current Selection</strong></p>
                 <p>Customer: {customer ? customer.name: "Please select customer."}</p>
                 <p>Movie: {movie ? movie.title: "Please select movie."}</p>
-                <button onClick={ onRentalClick }
+                <button className="btn btn-primary" onClick={ onRentalClick }
                 >Reserve Movie</button>
+                </div>
             </div>
             
         )

@@ -76,12 +76,12 @@ class App extends Component {
 
   render() {
     const errorSection = (this.state.errorMessage) ?
-      (<section className="error">
+      (<section className="alert alert-danger">
         Error: {this.state.errorMessage}
       </section>) : null;
 
     const messageSection = (this.state.customerMessage) ?
-      (<section className="error">
+      (<section className="alert alert-info">
         {this.state.customerMessage}
       </section>) : null;
 
@@ -95,20 +95,22 @@ class App extends Component {
 
         <Router>
           <div>
-            <ul>
-              <li>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-link">
                 <Link to="/">Home</Link>
               </li>
-              <li>
+              <li className="nav-link">
                 <Link to="/movies">Movies</Link>
               </li>
-              <li>
+              <li className="nav-link">
                 <Link to="/customers">Customers</Link>
               </li>
-              <li>
+              <li className="nav-link">
                 <Link to="/search">Search</Link>
               </li>
             </ul>
+            </nav>
 
             <hr />
 

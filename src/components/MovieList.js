@@ -37,11 +37,12 @@ class MovieList extends Component {
           overview={movie.overview}
           release_date={movie.release_date}
           onSelectMovieCallback={this.props.onSelectMovieCallback}
+          image_url={movie.image_url}
         />
       );
     });
     return (
-      <div>
+      <div className="movie-cards">
         {allMovies}
       </div>
     );

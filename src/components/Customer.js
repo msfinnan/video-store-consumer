@@ -11,19 +11,16 @@ class Customer extends Component {
         const {id, name, registered_at, address, city, state, postal_code, phone, account_credit, movies_checked_out_count} = this.props;
 
         return (
-            <div>
-                <p>Name: {name}</p>
-                <p>ID: {id}</p>
-                <p>Phone: {phone}</p>
-                <p>Account Credit: ${account_credit}</p>
-                <p>Movies Checked Out: {movies_checked_out_count}</p>
-                <p>Registered at: {registered_at}</p> 
-                <p>Address: {address} {city} {state} {postal_code}</p>
-                <button
-                 onClick={ this.onClickButton}
+            <tbody>
+            <td>{id}</td>
+            <td>{name}</td>
+            <td>{movies_checked_out_count}</td>
+            <td><button
+                className="btn btn-primary"
+                onClick={ this.onClickButton}
                 >Select Customer
-                </button>
-            </div>            
+                </button></td>
+        </tbody>           
         )
     }
 }

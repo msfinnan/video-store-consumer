@@ -48,9 +48,17 @@ class CustomerList extends Component {
     render () {
         const allCustomers = this.state.customers;
         return (
-            <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Movies Checked Out</th>
+                        <th scope="col">Select</th>
+                    </tr>
+                </thead>
                 {allCustomers}
-            </div>
+            </table>
         );
     }
 }
