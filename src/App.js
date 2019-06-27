@@ -77,47 +77,47 @@ class App extends Component {
           <h1>Movie Store </h1>
           {errorSection}
           {messageSection}
-        </header>
 
-        <Router>
-          <div>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/movies">Movies</Link>
-              </li>
-              <li>
-                <Link to="/customers">Customers</Link>
-              </li>
-              <li>
-                <Link to="/search">Search</Link>
-              </li>
-            </ul>
 
-            <hr />
-
+          <Router>
             <div>
-              <Select
-                movie={this.state.selectedMovie}
-                customer={this.state.selectedCustomer}
-                onCheckoutMovie={this.onCheckoutMovie}
+              <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <ul class="navbar-nav mr-auto">
+                  <li className="nav-link">
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li className="nav-link">
+                    <Link to="/movies">Movies</Link>
+                  </li>
+                  <li className="nav-link">
+                    <Link to="/customers">Customers</Link>
+                  </li>
+                  <li className="nav-link">
+                    <Link to="/search">Search</Link>
+                  </li>
+                </ul>
+              </nav>
+              <Route path="/" exact component={Index} />
+              <Route path="/home" exact component={Index} />
+              <Route
+                path="/movies"
+                render={(props) => <MovieList {...props} onSelectMovie={this.onSelectMovie} isAuthed={true} />}
               />
+              <Route
+                path="/customers"
+                render={(props) => <CustomerList {...props} onSelectCustomer={this.onSelectCustomer} isAuthed={true} />}
+              />
+              <Route path="/search/" exact component={Search} />
             </div>
-            <Route path="/" exact component={Index} />
-            <Route path="/home" exact component={Index} />
-            <Route
-              path="/movies"
-              render={(props) => <MovieList {...props} onSelectMovie={this.onSelectMovie} isAuthed={true} />}
-            />
-            <Route
-              path="/customers"
-              render={(props) => <CustomerList {...props} onSelectCustomer={this.onSelectCustomer} isAuthed={true} />}
-            />
-            <Route path="/search/" exact component={Search} />
-          </div>
-        </Router>
+          </Router>
+        </header>
+        <div>
+          <Select
+            movie={this.state.selectedMovie}
+            customer={this.state.selectedCustomer}
+            onCheckoutMovie={this.onCheckoutMovie}
+          />
+        </div>
       </main>
     );
   }
