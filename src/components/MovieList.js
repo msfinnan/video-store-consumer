@@ -11,6 +11,7 @@ class MovieList extends Component {
         movies: [],
         selectedMovie: undefined
       }
+      console.log(this.props)
   }
 
   MovieCards() {
@@ -24,7 +25,7 @@ class MovieList extends Component {
                       title= {movie.title}
                       overview={movie.overview}
                       release_date= {movie.release_date}
-                      onSelectMovieCallback={this.props.onSelectMovie}
+                      onSelectMovieCallback={this.props.onSelectMovieCallback}
                   />
               );
           });
