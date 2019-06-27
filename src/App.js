@@ -110,7 +110,6 @@ class App extends Component {
               <Route path="/search/" exact component={Search} />
             </div>
           </Router>
-        </header>
         <div>
           <Select
             movie={this.state.selectedMovie}
@@ -118,6 +117,7 @@ class App extends Component {
             onCheckoutMovie={this.onCheckoutMovie}
           />
         </div>
+        </header>
       </main>
     );
   }
