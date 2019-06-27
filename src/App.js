@@ -62,12 +62,12 @@ class App extends Component {
 
   render() {
     const errorSection = (this.state.errorMessage) ?
-      (<section className="error">
+      (<section className="alert alert-danger">
         Error: {this.state.errorMessage}
       </section>) : null;
 
     const messageSection = (this.state.customerMessage) ?
-      (<section className="error">
+      (<section className="alert alert-info">
         {this.state.customerMessage}
       </section>) : null;
 
