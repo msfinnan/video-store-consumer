@@ -62,7 +62,9 @@ class App extends Component {
   }
 
   movieLookUp = (movieID) => {
-    this.state.movies.find(movie => movie.id === movieID)
+    console.log(this.state.movies)
+    console.log(movieID)
+    return this.state.movies.find(movie => movie.external_id === movieID)
   }
 
   setMovieState = (allMovies) => {
@@ -128,7 +130,9 @@ class App extends Component {
               path="/customers"
               render={(props) => <CustomerList {...props} onSelectCustomer={this.onSelectCustomer} isAuthed={true} />}
             />
-            <Route path="/search/" exact component={Search} movieLookUp={this.movieLookUp} />
+            <Route path="/search/" 
+            render={(props) => <Search {...props} movieLookUp={this.movieLookUp} />}
+            />
           </div>
         </Router>
       </main>

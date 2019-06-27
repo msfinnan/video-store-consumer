@@ -18,13 +18,7 @@ class MovieList extends Component {
     axios.get('http://localhost:3000/movies')
       .then((response) => {
         const allMovies = response.data
-        
-        console.log("**************************************************")
-        console.log(allMovies)
-        console.log("**************************************************")
-        
         this.props.setMovieState(allMovies)
-
       })
       .catch((error) => {
         console.log("inside of error")

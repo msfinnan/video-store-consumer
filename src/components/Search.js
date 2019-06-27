@@ -24,8 +24,8 @@ class Search extends Component {
         });
       })
       .catch((error) => {
-              console.log(error);
-            })
+        console.log(error);
+      })
   };
 
   onInput = event => {
@@ -42,19 +42,26 @@ class Search extends Component {
   // TODO make map results list items
   movieSearchList = () => {
     return this.state.queryResults.map((movie) => {
+      console.log(`${movie.title}: ${this.props.movieLookUp(movie.id)}`)
       return (
         <div key={movie.id}>
           <p>{movie.title}</p>
           <p>{movie.overview}</p>
           <p>{movie.release_date}</p>
-          <button onClick={this.addMovie(movie)}> Add Movie</button>
+          {
+            this.props.movieLookUp(movie.external_id) ? (
+              <p>Movie already in database.</p>
+            ) : (
+                <button onClick={this.addMovie(movie)}> Add Movie</button>
+              )
+          }
         </div>
       );
     });
   };
 
   addMovie = (movie) => {
-    return () => { 
+    return () => {
       const movieInfo = {
         key: movie.id,
         title: movie.title,
@@ -66,15 +73,15 @@ class Search extends Component {
       };
 
       axios.post('http://localhost:3000/movies', movieInfo)
-      .then((response) => {
-        
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+        .then((response) => {
+
+        })
+        .catch((error) => {
+          console.log(error);
+        })
       let newState = this.state
       newState.queryResults = [];
-      this.setState({newState});
+      this.setState({ newState });
     }
   }
 
