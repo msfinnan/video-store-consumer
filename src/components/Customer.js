@@ -8,7 +8,7 @@ class Customer extends Component {
     }
 
     render() {
-        const {id, name, registered_at, address, city, state, postal_code, phone, account_credit, movies_checked_out_count} = this.props;
+        const {id, name, movies_checked_out_count} = this.props;
 
         return (
             <tbody>
@@ -24,5 +24,7 @@ class Customer extends Component {
         )
     }
 }
+
+
 
 export default Customer;

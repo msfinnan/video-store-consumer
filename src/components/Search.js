@@ -12,7 +12,7 @@ class Search extends Component {
       queryResults: [],
     }
   }
-  
+
   searchMovies = () => {
     axios.get('http://localhost:3000/movies?query=' + this.state.query)
       .then(response => {
@@ -53,18 +53,25 @@ class Search extends Component {
     return this.state.queryResults.map((movie) => {
       console.log(`${movie.title}: ${this.props.movieLookUp(movie.id)}`)
       return (
-        <div key={movie.id}>
-          <p>{movie.title}</p>
-          <p>{movie.overview}</p>
-          <p>{movie.release_date}</p>
-          {
-            this.props.movieLookUp(movie.external_id) ? (
-              <p>Movie already in database.</p>
-            ) : (
-                <button onClick={this.addMovie(movie)}> Add Movie</button>
-              )
-          }
-        </div>
+    
+          <div className="card">
+            <div className="card-body">
+              <img className="movie-image"
+                src={movie.image_url}
+                alt="movie" />
+              <p className="card-title"><strong>{movie.title}</strong></p>
+              <p className="card-subtitle mb-2 text-muted">{parseInt(movie.release_date)}</p>
+              <p className="card-text">{movie.overview}</p>
+              {
+                this.props.movieLookUp(movie.external_id) ? (
+                  <p>Movie already in database.</p>
+                ) : (
+                    <button onClick={this.addMovie(movie)}> Add Movie</button>
+                  )
+              }
+            </div>
+          </div>
+       
       );
     });
   };
@@ -108,7 +115,9 @@ class Search extends Component {
             <input type="submit" name="submit" value="Search" />
           </form>
         </section>
+        <div className="movie-cards">
         {this.movieSearchList()}
+        </div>
         {messageSection}
       </div>
     );

@@ -12,7 +12,7 @@ class Movie extends Component {
 
         return (
             <div className="card">
-                <div className="card-body"></div>
+                <div className="card-body">
                 <img className="movie-image"
                     src={image_url}
                     alt="movie" />
@@ -24,10 +24,8 @@ class Movie extends Component {
                 >Select Movie
                 </button>
                 <p className="card-text">{overview}</p>
+                </div>
             </div>
-
-
-
         )
     }
 };
