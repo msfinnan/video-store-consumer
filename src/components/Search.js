@@ -12,7 +12,7 @@ class Search extends Component {
       queryResults: [],
     }
   }
-
+  
   searchMovies = () => {
     axios.get('http://localhost:3000/movies?query=' + this.state.query)
       .then(response => {
@@ -41,6 +41,15 @@ class Search extends Component {
 
   // TODO make map results list items
   movieSearchList = () => {
+    axios.get('http://localhost:3000/movies')
+      .then((response) => {
+        const allMovies = response.data
+        this.props.setMovieState(allMovies)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     return this.state.queryResults.map((movie) => {
       console.log(`${movie.title}: ${this.props.movieLookUp(movie.id)}`)
       return (
@@ -74,7 +83,6 @@ class Search extends Component {
 
       axios.post('http://localhost:3000/movies', movieInfo)
         .then((response) => {
-
         })
         .catch((error) => {
           console.log(error);

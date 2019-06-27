@@ -131,7 +131,7 @@ class App extends Component {
               render={(props) => <CustomerList {...props} onSelectCustomer={this.onSelectCustomer} isAuthed={true} />}
             />
             <Route path="/search/" 
-            render={(props) => <Search {...props} movieLookUp={this.movieLookUp} />}
+            render={(props) => <Search {...props} setMovieState={this.setMovieState} movieLookUp={this.movieLookUp} />}
             />
           </div>
         </Router>

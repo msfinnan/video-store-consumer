@@ -10,18 +10,15 @@ class MovieList extends Component {
     this.state = {
       selectedMovie: undefined
     }
-    console.log(this.props)
   }
 
   MovieCards() {
-    console.log("in axios")
     axios.get('http://localhost:3000/movies')
       .then((response) => {
         const allMovies = response.data
         this.props.setMovieState(allMovies)
       })
       .catch((error) => {
-        console.log("inside of error")
         console.log(error);
       });
   }
