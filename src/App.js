@@ -14,6 +14,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      movies: [],
       selectedCustomer: null,
       selectedMovie: null,
       customerMessage: null,
@@ -58,6 +59,17 @@ class App extends Component {
         errorMessage: "Please select a user and movie."
       });
     }
+  }
+
+  movieLookUp = (movieID) => {
+    this.state.movies.find(movie => movie.id === movieID)
+  }
+
+  setMovieState = (allMovies) => {
+    console.log("in setMovieState")
+    this.setState({
+      movies: allMovies,
+  });
   }
 
   render() {
@@ -110,13 +122,13 @@ class App extends Component {
             <Route path="/home" exact component={Index} />
             <Route
               path="/movies"
-              render={(props) => <MovieList {...props} onSelectMovieCallback={this.onSelectMovie} isAuthed={true} />}
+              render={(props) => <MovieList {...props} setMovieState={this.setMovieState} movies={this.state.movies} onSelectMovieCallback={this.onSelectMovie} isAuthed={true} />}
             />
             <Route
               path="/customers"
               render={(props) => <CustomerList {...props} onSelectCustomer={this.onSelectCustomer} isAuthed={true} />}
             />
-            <Route path="/search/" exact component={Search} />
+            <Route path="/search/" exact component={Search} movieLookUp={this.movieLookUp} />
           </div>
         </Router>
       </main>

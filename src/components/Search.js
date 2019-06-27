@@ -10,7 +10,6 @@ class Search extends Component {
     this.state = {
       query: "",
       queryResults: [],
-      customerMessage: ""
     }
   }
 
@@ -68,9 +67,7 @@ class Search extends Component {
 
       axios.post('http://localhost:3000/movies', movieInfo)
       .then((response) => {
-        this.setState({
-          customerMessage: "Movie Added!",
-        });
+        
       })
       .catch((error) => {
         console.log(error);

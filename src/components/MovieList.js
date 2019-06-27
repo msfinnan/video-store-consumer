@@ -5,53 +5,54 @@ import './MovieList.css';
 import Movie from './Movie';
 
 class MovieList extends Component {
-  constructor(props) { 
+  constructor(props) {
     super(props)
-      this.state = {
-        movies: [],
-        selectedMovie: undefined
-      }
-      console.log(this.props)
+    this.state = {
+      selectedMovie: undefined
+    }
+    console.log(this.props)
   }
 
   MovieCards() {
+    console.log("in axios")
     axios.get('http://localhost:3000/movies')
       .then((response) => {
-          const allMovies = response.data.map((movie) => {
-              return (
-                  < Movie
-                      key={movie.id}
-                      id= {movie.id}
-                      title= {movie.title}
-                      overview={movie.overview}
-                      release_date= {movie.release_date}
-                      onSelectMovieCallback={this.props.onSelectMovieCallback}
-                  />
-              );
-          });
-          this.setState({
-              movies: allMovies,
-          });
+        const allMovies = response.data
+        
+        console.log("**************************************************")
+        console.log(allMovies)
+        console.log("**************************************************")
+        
+        this.props.setMovieState(allMovies)
+
       })
       .catch((error) => {
-          console.log(error);
+        console.log("inside of error")
+        console.log(error);
       });
   }
 
   componentDidMount() {
-      this.MovieCards();
+    this.MovieCards();
   }
 
-  movieLookUp = (movieID) => {
-    this.state.movies.find(movie => movie.id === movieID)
-  }
-
-  render () {
-    const allMovies = this.state.movies;
+  render() {
+    const allMovies = this.props.movies.map((movie) => {
+      return (
+        < Movie
+          key={movie.id}
+          id={movie.id}
+          title={movie.title}
+          overview={movie.overview}
+          release_date={movie.release_date}
+          onSelectMovieCallback={this.props.onSelectMovieCallback}
+        />
+      );
+    });
     return (
-        <div>
-            {allMovies}
-        </div>
+      <div>
+        {allMovies}
+      </div>
     );
   }
 }
