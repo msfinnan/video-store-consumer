@@ -8,7 +8,7 @@ import Select from './components/Select';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const Index = () => {
-  return (<p>home</p>);
+  return (<p></p>);
 }
 class App extends Component {
   constructor(props) {

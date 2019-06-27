@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import Movie from './Movie';
+import MovieList from './MovieList';
 
 class Search extends Component {
 
@@ -10,6 +10,7 @@ class Search extends Component {
     this.state = {
       query: "",
       queryResults: [],
+      customerMessage: ""
     }
   }
 
@@ -56,6 +57,7 @@ class Search extends Component {
   addMovie = (movie) => {
     return () => { 
       const movieInfo = {
+        key: movie.id,
         title: movie.title,
         overview: movie.overview,
         release_date: movie.release_date,
@@ -65,8 +67,10 @@ class Search extends Component {
       };
 
       axios.post('http://localhost:3000/movies', movieInfo)
-      .then(response => {
-        console.log('Movie added!', response);
+      .then((response) => {
+        this.setState({
+          customerMessage: "Movie Added!",
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -78,6 +82,11 @@ class Search extends Component {
   }
 
   render() {
+    const messageSection = (this.state.customerMessage) ?
+      (<section className="error">
+        {this.state.customerMessage}
+      </section>) : null;
+
     return (
       <div>
         <section>
@@ -88,6 +97,7 @@ class Search extends Component {
           </form>
         </section>
         {this.movieSearchList()}
+        {messageSection}
       </div>
     );
   }

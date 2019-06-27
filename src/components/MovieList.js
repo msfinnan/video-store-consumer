@@ -42,6 +42,10 @@ class MovieList extends Component {
       this.MovieCards();
   }
 
+  movieLookUp = (movieID) => {
+    this.state.movies.find(movie => movie.id === movieID)
+  }
+
   render () {
     const allMovies = this.state.movies;
     return (
