@@ -62,13 +62,10 @@ class App extends Component {
   }
 
   movieLookUp = (movieID) => {
-    console.log(this.state.movies)
-    console.log(movieID)
     return this.state.movies.find(movie => movie.external_id === movieID)
   }
 
   setMovieState = (allMovies) => {
-    console.log("in setMovieState")
     this.setState({
       movies: allMovies,
   });
