@@ -78,7 +78,7 @@ class Search extends Component {
 
   addMovie = (movie) => {
     return () => {
-      const movieInfo = {
+      axios.post('http://localhost:3000/movies', {
         key: movie.id,
         title: movie.title,
         overview: movie.overview,
@@ -86,9 +86,7 @@ class Search extends Component {
         image_url: movie.image_url,
         external_id: movie.external_id,
         inventory: 27
-      };
-
-      axios.post('http://localhost:3000/movies', movieInfo)
+      })
         .then((response) => {
         })
         .catch((error) => {
