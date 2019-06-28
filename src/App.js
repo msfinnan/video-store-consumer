@@ -44,7 +44,9 @@ class App extends Component {
         .then((response) => {
           this.setState({
             customerMessage: `${selectedMovie.title} successfully checked out to ${selectedCustomer.name} (User ID ${selectedCustomer.id})`,
-            errorMessage: ''
+            errorMessage: '',
+            selectedCustomer: null,
+            selectedMovie: null,
           });
         })
         .catch((error) => {
@@ -83,7 +85,7 @@ class App extends Component {
     return (
       <main>
         <header>
-          <h1>Movie Store </h1>
+          <h1>Yes, We're Still Around Video Store</h1>
           {errorSection}
           {messageSection}
         </header>

@@ -17,7 +17,7 @@ class Movie extends Component {
                     src={image_url}
                     alt="movie" />
                 <p className="card-title"><strong>{title}</strong></p>
-                <p className="card-subtitle mb-2 text-muted">{parseInt(release_date)}</p>
+                <p className="card-subtitle mb-2 text-muted">{release_date ? parseInt(release_date) : ""}</p>
                 <button
                     className="btn btn-primary"
                     onClick={this.onClickButton}

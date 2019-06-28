@@ -16,6 +16,7 @@ class Search extends Component {
     axios.get('http://localhost:3000/movies?query=' + this.state.query)
       .then(response => {
         const movies = response.data.map(movie => {
+          console.log(movie)
           return movie;
         });
         this.setState({
@@ -47,11 +48,10 @@ class Search extends Component {
       })
       .catch((error) => {
         console.log(error);
-      });
+      })
 
     return this.state.queryResults.map((movie) => {
       return (
-    
           <div className="card">
             <div className="card-body">
               <img className="movie-image"
