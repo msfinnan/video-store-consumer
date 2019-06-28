@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import MovieList from './MovieList';
 
 class Search extends Component {
 
@@ -120,5 +119,10 @@ class Search extends Component {
     );
   }
 }
+
+Search.propTypes = {
+  setMovieState: PropTypes.func,
+  movieLookUp: PropTypes.func,
+};
 
 export default Search;

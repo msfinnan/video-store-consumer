@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Customer.css'
 class Customer extends Component {
@@ -8,23 +8,30 @@ class Customer extends Component {
     }
 
     render() {
-        const {id, name, movies_checked_out_count} = this.props;
+        const { id, name, movies_checked_out_count } = this.props;
 
         return (
             <tbody>
-            <td>{id}</td>
-            <td>{name}</td>
-            <td>{movies_checked_out_count}</td>
-            <td><button
-                className="btn btn-primary"
-                onClick={ this.onClickButton}
-                >Select Customer
+                <tr>
+                    <td>{id}</td>
+                    <td>{name}</td>
+                    <td>{movies_checked_out_count}</td>
+                    <td><button
+                        className="btn btn-primary"
+                        onClick={this.onClickButton}
+                    >Select Customer
                 </button></td>
-        </tbody>           
+                </tr>
+            </tbody>
         )
     }
 }
 
+Customer.propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    movies_checked_out_count: PropTypes.number
+};
 
 
 export default Customer;

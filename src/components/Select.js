@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import './Select.css'
 
 
@@ -23,5 +22,11 @@ const Select = (props) => {
             
         )
 }
+
+Select.propTypes = {
+    onCheckoutMovie: PropTypes.func,
+    movie: PropTypes.object,
+    customer: PropTypes.object,
+};
 
 export default Select;

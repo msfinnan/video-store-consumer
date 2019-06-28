@@ -49,4 +49,10 @@ class MovieList extends Component {
   }
 }
 
+MovieList.propTypes = {
+  setMovieState: PropTypes.func,
+  onSelectMovieCallback: PropTypes.func,
+  movies: PropTypes.array,
+};
+
 export default MovieList;

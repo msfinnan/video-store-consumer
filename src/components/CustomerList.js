@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import './CustomersList.css';
 import Customer from './Customer';
+
 class CustomerList extends Component {
     constructor(props) {
         super(props);
@@ -48,7 +49,7 @@ class CustomerList extends Component {
     render () {
         const allCustomers = this.state.customers;
         return (
-            <table class="table">
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -62,5 +63,9 @@ class CustomerList extends Component {
         );
     }
 }
+
+CustomerList.propTypes = {
+    onSelectCustomer: PropTypes.func,
+  };
 
 export default CustomerList;

@@ -30,4 +30,11 @@ class Movie extends Component {
     }
 };
 
+Movie.propTypes = {
+    title: PropTypes.string,
+    overview: PropTypes.string,
+    release_date: PropTypes.string,
+    image_url: PropTypes.string,
+};
+
 export default Movie;
