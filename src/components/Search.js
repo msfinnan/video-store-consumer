@@ -103,12 +103,12 @@ class Search extends Component {
       </section>) : null;
 
     return (
-      <div>
-        <section>
+      <div className="card" >
+        <section className="card-body">
           <form onSubmit={this.findMovie}>
             <label htmlFor="query">Movie Search: </label>
             <input name="query" onChange={this.onInput} />
-            <input type="submit" name="submit" value="Search" />
+            <input className="btn btn-light" type="submit" name="submit" value="Search" />
           </form>
         </section>
         <div className="movie-cards">
