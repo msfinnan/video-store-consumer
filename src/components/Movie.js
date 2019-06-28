@@ -19,7 +19,7 @@ class Movie extends Component {
                 <p className="card-title"><strong>{title}</strong></p>
                 <p className="card-subtitle mb-2 text-muted">{parseInt(release_date)}</p>
                 <button
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                     onClick={this.onClickButton}
                 >Select Movie
                 </button>

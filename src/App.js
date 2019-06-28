@@ -7,9 +7,9 @@ import Search from './components/Search';
 import Select from './components/Select';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-const Index = () => {
-  return (<p></p>);
-}
+// const Index = () => {
+//   return (<p></p>);
+// }
 class App extends Component {
   constructor(props) {
     super(props)
@@ -22,14 +22,12 @@ class App extends Component {
   }
 
   onSelectCustomer = (customer) => {
-    console.log(customer);
     this.setState({
       selectedCustomer: customer,
     });
   }
 
   onSelectMovie = (movie) => {
-    console.log(movie);
     this.setState({
       selectedMovie: movie,
     });
@@ -62,16 +60,13 @@ class App extends Component {
   }
 
   movieLookUp = (movieID) => {
-    console.log(this.state.movies)
-    console.log(movieID)
     return this.state.movies.find(movie => movie.external_id === movieID)
   }
 
   setMovieState = (allMovies) => {
-    console.log("in setMovieState")
     this.setState({
       movies: allMovies,
-  });
+    });
   }
 
   render() {
@@ -96,34 +91,31 @@ class App extends Component {
         <Router>
           <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-link">
-                <Link to="/">Home</Link>
-              </li>
-              <li className="nav-link">
-                <Link to="/movies">Movies</Link>
-              </li>
-              <li className="nav-link">
-                <Link to="/customers">Customers</Link>
-              </li>
-              <li className="nav-link">
-                <Link to="/search">Search</Link>
-              </li>
-            </ul>
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-link">
+                  <Link to="/">Home</Link>
+                </li>
+                <li className="nav-link">
+                  <Link to="/movies">Movies</Link>
+                </li>
+                <li className="nav-link">
+                  <Link to="/customers">Customers</Link>
+                </li>
+                <li className="nav-link">
+                  <Link to="/search">Search</Link>
+                </li>
+              </ul>
             </nav>
 
-            <hr />
-
             <div>
-              Current Selections:
-              <Select
+              {(this.state.selectedMovie || this.state.selectedCustomer) && <Select
                 movie={this.state.selectedMovie}
                 customer={this.state.selectedCustomer}
                 onCheckoutMovie={this.onCheckoutMovie}
-              />
+              />}
             </div>
-            <Route path="/" exact component={Index} />
-            <Route path="/home" exact component={Index} />
+            {/* <Route path="/" exact component={Index} />
+            <Route path="/home" exact component={Index} /> */}
             <Route
               path="/movies"
               render={(props) => <MovieList {...props} setMovieState={this.setMovieState} movies={this.state.movies} onSelectMovieCallback={this.onSelectMovie} isAuthed={true} />}
@@ -132,8 +124,8 @@ class App extends Component {
               path="/customers"
               render={(props) => <CustomerList {...props} onSelectCustomer={this.onSelectCustomer} isAuthed={true} />}
             />
-            <Route path="/search/" 
-            render={(props) => <Search {...props} setMovieState={this.setMovieState} movieLookUp={this.movieLookUp} />}
+            <Route path="/search/"
+              render={(props) => <Search {...props} setMovieState={this.setMovieState} movieLookUp={this.movieLookUp} />}
             />
           </div>
         </Router>

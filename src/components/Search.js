@@ -51,7 +51,6 @@ class Search extends Component {
       });
 
     return this.state.queryResults.map((movie) => {
-      console.log(`${movie.title}: ${this.props.movieLookUp(movie.id)}`)
       return (
     
           <div className="card">

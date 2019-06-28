@@ -8,7 +8,6 @@ const Select = (props) => {
     const { onCheckoutMovie, movie, customer} = props;
     const onRentalClick = () => {
         onCheckoutMovie(customer, movie);
-        console.log('Rent Movie');
     }
 
         return (
