@@ -46,7 +46,9 @@ class App extends Component {
         .then((response) => {
           this.setState({
             customerMessage: `${selectedMovie.title} successfully checked out to ${selectedCustomer.name} (User ID ${selectedCustomer.id})`,
-            errorMessage: ''
+            errorMessage: '',
+            selectedCustomer: null,
+            selectedMovie: null,
           });
         })
         .catch((error) => {
