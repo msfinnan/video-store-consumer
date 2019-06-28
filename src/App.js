@@ -87,7 +87,7 @@ class App extends Component {
     return (
       <main>
         <header>
-          <h1>Movie Store </h1>
+          <h1>Yes, We're Still Around Video Store</h1>
           {errorSection}
           {messageSection}
         </header>
@@ -113,8 +113,7 @@ class App extends Component {
 
             <hr />
 
-            <div>
-              Current Selections:
+            <div id="current-selections">
               <Select
                 movie={this.state.selectedMovie}
                 customer={this.state.selectedCustomer}
